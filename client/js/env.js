@@ -26,7 +26,7 @@
 // 3. Replace the URL below with your actual Render URL
 // 4. Redeploy to Vercel
 
-const BACKEND_URL = 'https://netify-r5m7.onrender.com'; // Your actual Render URL'; // DEFAULT: Local development
+const BACKEND_URL = 'https://netify-r5m7.onrender.com'; // Your actual Render URL
 
 // UNCOMMENT AND UPDATE THIS LINE AFTER DEPLOYING BACKEND:
 // const BACKEND_URL = 'https://your-actual-render-url.onrender.com';
