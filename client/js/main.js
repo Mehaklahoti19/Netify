@@ -37,7 +37,23 @@ const initApp = async () => {
     
     if (!isHealthy) {
         console.error('API health check failed after retries');
-        showError('Unable to connect to the server. Please make sure the backend is running on port 5000.');
+        const backendUrl = window.API.BACKEND_URL || 'unknown';
+        const isLocalhost = backendUrl.includes('localhost');
+        
+        if (isLocalhost) {
+            showError(`Frontend is trying to connect to localhost:5000, but you're on Vercel. 
+                
+Please deploy your backend to Render and update BACKEND_URL in env.js.
+
+Current BACKEND_URL: ${backendUrl}`);
+        } else {
+            showError(`Cannot connect to backend at ${backendUrl}. 
+                
+Please check:
+1. Backend is deployed and running on Render
+2. CORS is configured with your Vercel URL
+3. Backend URL in env.js is correct`);
+        }
         return;
     }
     

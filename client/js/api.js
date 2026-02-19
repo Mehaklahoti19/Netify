@@ -31,9 +31,12 @@
 // ============================================
 // BACKEND URL CONFIGURATION
 // ============================================
-// Change this to your Render backend URL after deployment
-const BACKEND_URL = 'http://localhost:5000'; // Local development
-// const BACKEND_URL = 'https://your-render-backend-url.onrender.com'; // Production - uncomment and update
+// The backend URL is loaded from env.js (window.ENV)
+// env.js must be loaded BEFORE this file in HTML
+// For local development: Defaults to localhost:5000
+const BACKEND_URL = (typeof window !== 'undefined' && window.ENV?.VITE_BACKEND_URL) 
+    ? window.ENV.VITE_BACKEND_URL 
+    : 'http://localhost:5000';
 
 // ============================================
 // API CONFIGURATION
