@@ -1,0 +1,33 @@
+# Netlify Deployment Configuration
+# This file configures how Netlify builds and serves your frontend
+
+[build]
+  # No build command needed for plain HTML/CSS/JS
+  publish = "."
+  
+[build.environment]
+  # Environment variables for build (if needed)
+  NODE_VERSION = "18"
+
+[[redirects]]
+  # Handle client-side routing - redirect all paths to index.html
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Security headers
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  # CORS headers for API calls
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"

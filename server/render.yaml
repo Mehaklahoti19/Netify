@@ -1,0 +1,31 @@
+# Render Deployment Configuration
+# This file helps Render understand how to deploy your backend
+
+services:
+  - type: web
+    name: netflix-movie-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000  # Render assigns this automatically, but we set a default
+      # Database credentials - Add these in Render Dashboard
+      - key: DB_HOST
+        sync: false  # Set in Render Dashboard for security
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PORT
+        sync: false
+      # API Keys - Add these in Render Dashboard
+      - key: OMDB_API_KEY
+        sync: false
+      # CORS - Add your Netlify frontend URL here after deployment
+      - key: ALLOWED_ORIGINS
+        value: "https://your-netlify-app.netlify.app,http://localhost:3000,http://localhost:5500"

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Netflix Movie App - Watch popular movies, top rated films, and upcoming releases">
+    <title>Netflix - Watch Movies Online</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="logo" onclick="window.location.reload()">NETFLIX</div>
+        <div class="nav-links">
+            <a href="#popular">Popular</a>
+            <a href="#top-rated">Top Rated</a>
+            <a href="#upcoming">Upcoming</a>
+            <a href="login.html" class="btn-login">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 id="heroTitle">Loading...</h1>
+            <div class="meta">
+                <span class="rating" id="heroRating">★ --</span>
+                <span class="year" id="heroYear">----</span>
+            </div>
+            <p id="heroOverview">Discover amazing movies from around the world...</p>
+            <div class="hero-buttons">
+                <button class="btn-play" onclick="playHeroMovie()">
+                    <span>▶</span> Play
+                </button>
+                <button class="btn-more" onclick="showMoreInfo()">
+                    <span>ℹ</span> More Info
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movie Sections -->
+    <section class="movie-section">
+        <!-- Popular Movies Row -->
+        <div class="movie-row" id="popular">
+            <h2>Popular on Netflix</h2>
+            <div class="movie-row-container">
+                <button class="scroll-btn prev" onclick="scrollRow('popularSlider', -1)">‹</button>
+                <div class="movie-slider" id="popularSlider">
+                    <!-- Loading skeletons -->
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+                <button class="scroll-btn next" onclick="scrollRow('popularSlider', 1)">›</button>
+            </div>
+        </div>
+
+        <!-- Top Rated Movies Row -->
+        <div class="movie-row" id="top-rated">
+            <h2>Top Rated</h2>
+            <div class="movie-row-container">
+                <button class="scroll-btn prev" onclick="scrollRow('topRatedSlider', -1)">‹</button>
+                <div class="movie-slider" id="topRatedSlider">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+                <button class="scroll-btn next" onclick="scrollRow('topRatedSlider', 1)">›</button>
+            </div>
+        </div>
+
+        <!-- Upcoming Movies Row -->
+        <div class="movie-row" id="upcoming">
+            <h2>Coming Soon</h2>
+            <div class="movie-row-container">
+                <button class="scroll-btn prev" onclick="scrollRow('upcomingSlider', -1)">‹</button>
+                <div class="movie-slider" id="upcomingSlider">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+                <button class="scroll-btn next" onclick="scrollRow('upcomingSlider', 1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Netflix Movie App - Built with TMDB API</p>
+        <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+        });
+    </script>
+</body>
+</html>
