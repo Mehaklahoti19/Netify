@@ -56,13 +56,9 @@ const corsOptions = {
         // Allow requests with no origin (mobile apps, curl, etc.)
         if (!origin) return callback(null, true);
         
-        // Check if origin is allowed
-        if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
-            callback(null, true);
-        } else {
-            console.warn(`CORS blocked request from: ${origin}`);
-            callback(new Error('Not allowed by CORS'));
-        }
+        // Allow all origins in production (for Vercel deployment)
+        // TODO: For better security, restrict to specific origins in production
+        callback(null, true);
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
