@@ -38,7 +38,8 @@ const BACKEND_URL = 'https://netify-r5m7.onrender.com'; // Your actual Render UR
 // Environment configuration object
 window.ENV = {
     VITE_BACKEND_URL: BACKEND_URL,
-    APP_VERSION: '1.0.0'
+    APP_VERSION: '1.0.1',
+    DEPLOYED_AT: new Date().toISOString()
 };
 
 console.log('Environment loaded. Backend URL:', window.ENV.VITE_BACKEND_URL);
