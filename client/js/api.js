@@ -34,7 +34,7 @@
 // The backend URL is loaded from env.js (window.ENV)
 // env.js must be loaded BEFORE this file in HTML
 // For local development: Defaults to localhost:5000
-const BACKEND_URL = (typeof window !== 'undefined' && window.ENV?.VITE_BACKEND_URL) 
+const API_BACKEND_URL = (typeof window !== 'undefined' && window.ENV?.VITE_BACKEND_URL) 
     ? window.ENV.VITE_BACKEND_URL 
     : 'http://localhost:5000';
 
@@ -42,7 +42,7 @@ const BACKEND_URL = (typeof window !== 'undefined' && window.ENV?.VITE_BACKEND_U
 // API CONFIGURATION
 // ============================================
 const API_CONFIG = {
-    BASE_URL: `${BACKEND_URL}/api`,
+    BASE_URL: `${API_BACKEND_URL}/api`,
     TIMEOUT: 20000, // 20 seconds (increased for production)
     HEADERS: {
         'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ const apiRequest = async (endpoint, options = {}) => {
         }
         
         if (error.message === 'Failed to fetch') {
-            throw new Error(`Cannot connect to server at ${BACKEND_URL}. Please check:\n1. Backend is running\n2. BACKEND_URL is correct in api.js\n3. CORS is configured properly`);
+            throw new Error(`Cannot connect to server at ${API_BACKEND_URL}. Please check:\n1. Backend is running\n2. BACKEND_URL is correct in api.js\n3. CORS is configured properly`);
         }
         
         throw error;
@@ -220,7 +220,7 @@ const moviesAPI = {
  */
 const checkAPIHealth = async () => {
     try {
-        console.log(`Checking health at: ${BACKEND_URL}/api/health`);
+        console.log(`Checking health at: ${API_BACKEND_URL}/api/health`);
         const response = await apiRequest('/health');
         console.log('Health check response:', response);
         return response.status === 'ok' || response.success === true;
@@ -237,7 +237,7 @@ const checkAPIHealth = async () => {
 // Export API modules for use in other scripts
 window.API = {
     config: API_CONFIG,
-    BACKEND_URL,
+    BACKEND_URL: API_BACKEND_URL,
     request: apiRequest,
     auth: authAPI,
     movies: moviesAPI,
@@ -245,4 +245,4 @@ window.API = {
 };
 
 // Log configuration on load
-console.log('API Module loaded. Backend URL:', BACKEND_URL);
+console.log('API Module loaded. Backend URL:', API_BACKEND_URL);
